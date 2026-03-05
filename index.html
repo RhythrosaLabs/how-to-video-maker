@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Auto 45s How-To Video Maker</title>
+  <link rel="stylesheet" href="./styles.css"/>
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <header class="app-header">
+    <h1>How-To Video Maker</h1>
+    <div class="subtitle">Fully automated kinetic text videos with background music. No plugins. In your browser.</div>
+  </header>
+
+  <main class="layout">
+    <section class="controls">
+      <div class="card">
+        <h2>1) Describe your How-To</h2>
+        <label>
+          Topic
+          <input id="topic" type="text" placeholder="e.g., Brew pour-over coffee" />
+        </label>
+        <label>
+          Audience (optional)
+          <input id="audience" type="text" placeholder="e.g., beginners, home baristas"/>
+        </label>
+        <label>
+          Tone
+          <select id="tone">
+            <option value="friendly">Friendly</option>
+            <option value="professional">Professional</option>
+            <option value="energetic">Energetic</option>
+            <option value="calm">Calm</option>
+          </select>
+        </label>
+        <label>
+          Steps (auto-generated if left blank)
+          <textarea id="steps" rows="5" placeholder="- Heat water to 95°C
+- Rinse filter
+- Add coffee grounds
+- Bloom and pour
+- Serve"></textarea>
+        </label>
+
+        <div class="row">
+          <label class="half">
+            Visuals
+            <select id="visuals">
+              <option value="abstract">Abstract motion</option>
+              <option value="ai-images">AI generated images</option>
+              <option value="stock">Stock images</option>
+            </select>
+          </label>
+          <label class="half">
+            Narration
+            <select id="narration">
+              <option value="off">Off</option>
+              <option value="en-female">English — Female</option>
+              <option value="en-male">English — Male</option>
+              <option value="es-female">Spanish — Female</option>
+              <option value="fr-male">French — Male</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="row">
+          <label class="half">
+            Theme color
+            <input id="themeColor" type="color" value="#6c5ce7"/>
+          </label>
+          <label class="half">
+            Accent color
+            <input id="accentColor" type="color" value="#00d1b2"/>
+          </label>
+        </div>
+        <div class="row">
+          <label class="half">
+            Steps count
+            <input id="stepsCount" type="number" min="3" max="8" value="5"/>
+          </label>
+          <label class="half">
+            Emojis on
+            <select id="emojiMode">
+              <option value="auto">Auto</option>
+              <option value="on">Always</option>
+              <option value="off">Off</option>
+            </select>
+          </label>
+        </div>
+        <div class="row">
+          <label class="half">
+            Music style
+            <select id="musicStyle">
+              <option value="lofi">Lo-fi</option>
+              <option value="uplift">Uplifting</option>
+              <option value="minimal">Minimal</option>
+              <option value="corporate">Corporate</option>
+              <option value="cinematic">Cinematic</option>
+              <option value="acoustic">Acoustic</option>
+              <option value="none">No music</option>
+            </select>
+          </label>
+          <label class="half">
+            Resolution
+            <select id="resolution">
+              <option value="1280x720">HD 1280×720 (16:9)</option>
+              <option value="1080x1920">Vertical 1080×1920 (9:16)</option>
+              <option value="1080x1080">Square 1080×1080 (1:1)</option>
+            </select>
+          </label>
+        </div>
+        <div class="row">
+           <label class="half">
+            Duration
+            <select id="duration">
+              <option value="15">15 seconds</option>
+              <option value="30">30 seconds</option>
+              <option value="45" selected>45 seconds</option>
+              <option value="60">60 seconds</option>
+              <option value="90">90 seconds</option>
+              <option value="120">120 seconds</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>2) Generate and Render</h2>
+        <button id="generateBtn" class="primary">Auto-generate Script</button>
+        <button id="renderBtn" class="success" disabled>Render Video</button>
+        <div class="progress" id="progress">
+          <div class="bar" id="progressBar"></div>
+          <div class="label" id="progressLabel">Idle</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>3) Script & Timing</h2>
+        <div id="scriptView" class="script-view"></div>
+      </div>
+    </section>
+
+    <section class="preview">
+      <div class="card">
+        <h2>Preview Canvas</h2>
+        <canvas id="stage" width="1280" height="720"></canvas>
+        <div class="row space">
+          <button id="playPreview" class="ghost" disabled>Play Preview</button>
+          <button id="stopPreview" class="ghost" disabled>Stop</button>
+          <a id="downloadLink" class="download" download="howto_video.webm" style="display:none;">Download Video</a>
+        </div>
+        <div class="note">Tip: Rendering happens in real-time. Keep this tab visible for best results.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div>All processing happens in your browser. No uploads. Uses MediaRecorder and WebAudio.</div>
+  </footer>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "/utils.js": "/utils.js",
+        "/theme.js": "/theme.js",
+        "/ai.js": "/ai.js",
+        "/visuals.js": "/visuals.js",
+        "/audio.js": "/audio.js",
+        "/renderer.js": "/renderer.js",
+        "/ui.js": "/ui.js",
+        "/main.js": "/main.js"
+      }
+    }
+  </script>
+
+  <!-- Keep UMD tinycolor2 available globally -->
+  <script src="https://cdn.jsdelivr.net/npm/tinycolor2@1.6.0/dist/tinycolor-min.js"></script>
+
+  <!-- Thin entry that delegates to modules (retained filename for compatibility) -->
+  <script src="./app.js" type="module"></script>
+</body>
+</html>
