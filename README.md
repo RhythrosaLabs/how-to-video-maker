@@ -1,64 +1,62 @@
-# How-To Video Maker — by Rhythrosa Labs
+<div align="center">
 
-Fully automated kinetic-text how-to video generator that runs entirely in the browser. No plugins, no installs — just open and create.
+# 🎬 How-To Video Maker
 
-## Features
+**Fully automated kinetic-text how-to video generator — runs entirely in the browser**
 
-- **AI script generation** — describe a topic and get a structured how-to script with steps, narration, and timing
-- **Kinetic-text renderer** — animated canvas-based video with smooth transitions
-- **AI-generated images** — per-step cinematic background images
-- **Text-to-speech narration** — multiple voices and languages
-- **Background music** — selectable styles (corporate, lofi, acoustic, cinematic, etc.)
-- **Configurable output** — resolution, duration, step count, tone, emoji mode, theme colours
-- **In-browser MP4 export** — download the finished video directly
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
+![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=flat&logo=openai&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat)
 
-## Running locally
+</div>
 
-Serve the folder with any static HTTP server (required for ES module imports):
+---
+
+Describe a topic and get a complete how-to video in minutes — no plugins, no installs. AI writes the script, generates cinematic background images for each step, adds TTS narration, picks background music, and exports an MP4 — all from the browser canvas.
+
+## ✨ Features
+
+- **AI Script Generation** — structured how-to script with steps, narration text, and timing
+- **Kinetic-Text Renderer** — animated canvas-based video with smooth transitions
+- **AI-Generated Images** — per-step cinematic background images
+- **TTS Narration** — multiple voices and languages
+- **Background Music** — selectable styles: corporate, lofi, acoustic, cinematic, and more
+- **Configurable Output** — resolution, duration, step count, tone, emoji mode, theme colors
+- **In-Browser MP4 Export** — download the finished video directly
+
+## 🚀 Quick Start
 
 ```bash
-# Python 3
+git clone https://github.com/RhythrosaLabs/how-to-video-maker.git
+cd how-to-video-maker
+# Serve with any static server (required for ES modules)
 python3 -m http.server 8787
-
-# Node (npx)
-npx serve .
+# Open http://localhost:8787
 ```
 
-Then open `http://localhost:8787` in your browser.
+> **Note:** AI features (script, images, TTS) require the [WebSim](https://websim.ai) platform. When running locally outside WebSim, script generation falls back to templates and images use Picsum stock photos.
 
-## Platform note
+## 🛠️ Tech Stack
 
-This project was built for the [WebSim](https://websim.ai) platform, which provides the `websim.*` browser globals used for:
+- **Vanilla JavaScript (ES Modules)** — no framework
+- **HTML5 Canvas** — kinetic text animation and video rendering
+- **WebSim API** — LLM script generation, AI image generation, TTS
+- **MediaRecorder API** — in-browser MP4 export
 
-| Global | Purpose |
-|---|---|
-| `websim.chat.completions.create` | LLM script generation |
-| `websim.imageGen` | Per-step AI image generation |
-| `websim.textToSpeech` | Narration audio |
+## 🤝 Contributing
 
-These features are only available when the page is loaded inside WebSim. When running outside of WebSim, AI generation falls back to a local template-based script generator and visuals fall back to Picsum stock photos. TTS narration will be silently skipped.
+PRs welcome. Open an issue first for major changes.
 
-## File overview
-
-| File | Role |
-|---|---|
-| `index.html` | App shell and import map |
-| `app.js` | Entry point (delegates to `main.js`) |
-| `main.js` | Orchestrator — wires all modules together |
-| `ai.js` | Script generation (AI + local fallback) |
-| `visuals.js` | Image preparation and cache |
-| `audio.js` | TTS narration + background music |
-| `renderer.js` | Canvas frame renderer |
-| `ui.js` | DOM query helpers and UI utilities |
-| `theme.js` | Colour theme derivation |
-| `utils.js` | Shared utility functions |
-| `styles.css` | App styles |
-
-## License
+## 📄 License
 
 MIT
 
+## 💛 Support
 
-## Support
+If this saves you video editing time, consider supporting development:
 
-If you find this useful, consider supporting via [PayPal](https://paypal.me/noodlebake)
+👉 [Donate via PayPal](https://paypal.me/noodlebake) — @noodlebake
+
+---
+<div align="center">Made with ❤️ by <a href="https://github.com/RhythrosaLabs">RhythrosaLabs</a></div>
