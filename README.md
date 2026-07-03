@@ -57,3 +57,8 @@ These features are only available when the page is loaded inside WebSim. When ru
 ## License
 
 MIT
+
+
+## Support
+
+If you find this useful, consider supporting via [PayPal](https://paypal.me/noodlebake)
